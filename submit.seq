@@ -1,0 +1,9 @@
+#!/bin/bash
+#SBATCH --partition=small
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --job-name="sequential"
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-user=compiler@aast.edu
+${1}

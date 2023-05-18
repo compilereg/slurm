@@ -1,0 +1,24 @@
+#!/bin/bash
+### Shell script, accept binary name, and submit it to one of the compute nodes listed in partition "small"
+### Exit codes
+#		0: Success
+#		1: Insufficient parameters
+
+function printUsage
+{
+echo "Invalid usage:"
+echo -e "\t\t${0} <binary name> <output filename>"
+}
+
+[ ${#} -ne 2 ] && printUsage && exit 1
+BIN=${1}
+OUTFILE=${2}
+#SBATCH --partition=small
+#SBATCH --nodes=5
+#SBATCH --tasks-per-node=8
+#SBATCH --ntasks=40
+#SBATCH --cpus-per-task=1
+#--SBATCH --job-name="mpi"
+cd /home/${USER}
+srun --mpi=pmi2 -n 40 ${BIN} >> ${OUTFILE}
+exit 0

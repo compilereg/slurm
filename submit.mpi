@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH --partition=small
+#SBATCH --job-name="sample"
+#SBATCH --exclusive
+#SBATCH --export=ALL
+#SBATCH --out=slurm-%J.out
+#SBATCH --error=slurm-%J.err
+#SBATCH --ntasks=40
+
+srun --mpi=pmi2 ${1}

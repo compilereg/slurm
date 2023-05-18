@@ -1,0 +1,9 @@
+#!/bin/bash
+#SBATCH -J GPU
+#SBATCH -o slurm-%j.out
+#SBATCH -e errors_%j.txt
+#SBATCH -n 1
+#SBATCH -p gpu
+#SBATCH --gres=gpu:1
+
+${1}
